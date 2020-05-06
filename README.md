@@ -1,2 +1,3 @@
 # FlutterFireCrossPlatfrom
-Flutter: WEB + ANDROID + IOS + Firebase :FireStore + Storage
+Flutter: WEB + ANDROID 
+Firebase :FireStore + Storage(SUPPORT FOR ALL!!)
