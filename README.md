@@ -1,16 +1,21 @@
-# firebasetut
+# FlutterFireCrossPlatfrom
 
-A new Flutter application.
+SUPPORT ALL PLATFORMS: WEB + ANDROID + IOS
 
-## Getting Started
+exsits 2 features:
 
-This project is a starting point for a Flutter application.
+HomePage - BASIC:
 
-A few resources to get you started if this is your first Flutter project:
+Load data from firestore and image from storage
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+HomePageExt - ADVANCED:
+
+Load data from firestore and image from storage
+
+Add new Animal data + file (support all!!)
+
+Delete data swipe
+
+SizeConfig support for responsive app
+
