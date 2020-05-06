@@ -10,6 +10,11 @@ class HomePage extends StatelessWidget {
   final _storage = FireStorage();
   final _fireStore = Firestore.instance;
 
+  /// _loadAnimals stream
+  /// query for loading all animals
+  /// SNAPSHOT - REAL DEAL for support realtime data:
+  /// when something change on the data base update/new/delete it will change automatically
+  /// asyncmap convert snapshots to animals list
   Stream<List<Animal>> _loadAnimals() {
     return _fireStore.collection("$MAIN_PATH$ANIMAL_PATH")
         .snapshots()
@@ -18,6 +23,11 @@ class HomePage extends StatelessWidget {
             .toList());
   }
 
+  ///
+  /// _listStreamAnimals
+  /// Listening for [_loadAnimals] until data will come
+  /// until the data is loading display CircularProgressIndicator
+  ///
   Widget _listStreamAnimals() {
     return StreamBuilder<List<Animal>>(
         stream: _loadAnimals(),
@@ -37,6 +47,9 @@ class HomePage extends StatelessWidget {
         });
   }
 
+  ///
+  /// Card animal item
+  ///
   Widget _animalItem(Animal animal) {
     return Card(
       elevation: 5,
@@ -92,6 +105,10 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  ///
+  /// _animalImageProgress widget
+  ///
+  ///
   Widget _animalImageProgress(String path) {
     return StreamBuilder<String>(
       stream: _storage.loadImage(path),

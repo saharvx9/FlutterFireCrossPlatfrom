@@ -6,6 +6,11 @@ import 'dart:typed_data';
 import 'package:firebasetut/extras/uploadanimaldialog/pickimage/base_pick_image.dart';
 
 class PickImage extends BasePickImage {
+
+  ///
+  /// PickImage WEB
+  /// return future of html.file (dynamic for supporting all platforms)
+  ///
   @override
   Future<dynamic> pickImage() {
     final completer = Completer<dynamic>();
@@ -21,17 +26,17 @@ class PickImage extends BasePickImage {
       final reader = FileReader();
       reader.readAsDataUrl(file);
       reader.onLoad.first.then((value) {
-//        final encoded = reader.result as String;
-//        // remove data:image/*;base64 preambule
-//        final stripped = encoded.replaceFirst(RegExp(r'data:image/[^;]+;base64,'), '');
-//        final data = base64.decode(stripped);
-//        completer.complete(data);
         completer.complete(file);
       });
     });
     return completer.future;
   }
 
+  ///
+  /// formatFile
+  /// [file] html.file convert it to [Uint8List]
+  /// for display it in image before upload
+  ///
   @override
   Future<dynamic> formatFile(dynamic file) async {
     final completer = Completer<dynamic>();

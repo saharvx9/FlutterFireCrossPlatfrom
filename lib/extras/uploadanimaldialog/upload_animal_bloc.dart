@@ -14,8 +14,12 @@ class UploadAnimalBloc {
   final ageStream = StreamController<String>.broadcast();
   final imageStream = StreamController<dynamic>.broadcast();
   final uploadAnimalStream = StreamController<UploadState>.broadcast();
-  var _imageCache;
+  var _imageFileCache;
 
+  ///
+  /// Observe both stream [nameStream] [ageStream] for each event that was emitted
+  /// add it to current field of animal
+  /// 
   UploadAnimalBloc() {
     Rx.combineLatest([nameStream.stream, ageStream.stream], (values) => values)
         .listen((event) {
@@ -26,13 +30,18 @@ class UploadAnimalBloc {
     });
   }
 
+  ///start upload new animal and emit events of [UploadState]
   uploadNewAnimal() {
-    uploadAnimalStream
-        .addStream(_firebaseApi.uploadNewAnimal(animal, _imageCache));
+    uploadAnimalStream.addStream(_firebaseApi.uploadNewAnimal(animal, _imageFileCache));
   }
 
+  /// DisplayAndSaveFileImage
+  /// [file] can be be file mobile(dart.io) of html file(html.file) 
+  /// first save it in [_imageFileCache]
+  /// than emit it
+  /// **notice in case it kIsWeb platform convert it to [Uint8List]
   displayAndSaveFileImage(dynamic file) async {
-    _imageCache = file;
+    _imageFileCache = file;
     if (kIsWeb) {
       imageStream.add(await PickImage().formatFile(file));
     } else {
@@ -40,6 +49,9 @@ class UploadAnimalBloc {
     }
   }
 
+  /// 
+  /// For prevent leaks memory when process finish close all
+  /// 
   dispose() {
     nameStream.close();
     ageStream.close();

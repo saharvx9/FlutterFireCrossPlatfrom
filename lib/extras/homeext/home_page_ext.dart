@@ -5,6 +5,7 @@ import 'package:firebasetut/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
 class HomePageExt extends StatelessWidget {
+
   final _bloc = HomeExtBloc();
 
   ///

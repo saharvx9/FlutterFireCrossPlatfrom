@@ -8,6 +8,7 @@ class HomeExtBloc {
   /// return: Stream<List<Animal>>
   Stream<List<Animal>> loadAnimals() => _firebaseApi.loadAnimals();
 
+  ///Load image from firebase api
   Stream<String> loadImage(String path) => _firebaseApi.loadImage(path);
 
   deleteAnimal(String id) async {

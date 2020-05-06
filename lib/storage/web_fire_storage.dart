@@ -7,9 +7,14 @@ import 'package:flutter/cupertino.dart';
 import 'dart:html' as html;
 import 'base_fire_storage.dart';
 
+///
+/// ~~~~~~~~~ FireStorage WEB ~~~~~~~~~
+///
 class FireStorage extends BaseFireStorage {
   final _ref = storage().ref();
 
+  /// Load image from firebase storage
+  /// [path] path image at firebase storage
   @override
   Stream<String> loadImage(String path) => _ref
       .child(path)
@@ -17,6 +22,10 @@ class FireStorage extends BaseFireStorage {
       .asStream()
       .map((event) => event.toString());
 
+  /// Upload image from firebase storage
+  /// [path] path that should be save the image
+  /// [name] image name
+  /// [file] html.file image
   @override
   Stream<UploadState> uploadImage(
       String path, String name, dynamic uInt8list) async* {

@@ -105,7 +105,6 @@ class UploadAnimalDialog {
           return snapshot.hasData
               ? (kIsWeb
                   ? Image.memory(snapshot.data, height: 200, width: 200)
-//                  ? Text("Image is ready",style: TextStyle(color: Colors.blue,fontSize: 20),)
                   : Image.file(
                       snapshot.data,
                       height: 100,
@@ -134,10 +133,8 @@ class UploadAnimalDialog {
   }
 
   _startPickImage() {
-    if (kIsWeb)
-      _pickImageMultiPlatform();
-    else
-      _checkForPermissions();
+    if (kIsWeb) _pickImageMultiPlatform();
+    else _checkForPermissions();
   }
 
   _checkForPermissions() async {
@@ -175,6 +172,10 @@ class UploadAnimalDialog {
         });
   }
 
+  ///
+  /// _stateUploadWidget
+  /// handle to display widgets by [UploadState]
+  ///
   Widget _stateUploadWidget(UploadState state) {
     switch (state) {
       case UploadState.DEFAULT:

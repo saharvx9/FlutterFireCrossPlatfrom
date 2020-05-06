@@ -22,6 +22,9 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
+
+      /// In case you want to see basic - HomePage
+      /// Advanced - HomePageExt
 //      home: HomePage(),
       home: HomePageExt(),
     );

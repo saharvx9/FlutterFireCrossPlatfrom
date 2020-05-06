@@ -12,6 +12,9 @@ class FireBaseApi {
   final _storage = FireStorage();
   final _fireStore = Firestore.instance;
 
+  /// Load image
+  /// In case platform its web it will use [web_fire_storage.dart]
+  /// In case platform its mobile it will use [pick_image_mobile.dart]
   Stream<String> loadImage(String path) => _storage.loadImage(path);
 
   ///
@@ -25,6 +28,21 @@ class FireBaseApi {
             .toList());
   }
 
+  ///
+  /// Upload new Animal
+  /// [animal] value
+  /// [file] type can be file dart.io(mobile) or dart.html(web)
+  /// first trying to upload image file:
+  /// In case platform its web it will use [web_fire_storage.dart]
+  /// In case platform its mobile it will use [pick_image_mobile.dart]
+  /// than upload animal data mapper
+  /// in all this process emit(yield) [UploadState] that determine which upload state:
+  ///  DEFAULT - first state
+  ///  LOADING - uploading
+  ///  FINISH_UPLOAD_IMAGE - finish upload only image
+  ///  ERROR - error in case something went wrong
+  ///  FINISH - finish all successfully!!!
+  ///
   Stream<UploadState> uploadNewAnimal(Animal animal, dynamic file) async* {
     yield UploadState.LOADING;
     try {
@@ -32,7 +50,7 @@ class FireBaseApi {
       var name = "";
       var pathImage = "";
       if (kIsWeb) {
-        name = "$timestamp.jpeg";
+        name = "$timestamp";
       } else {
         name = "$timestamp${path.basenameWithoutExtension((file).path)}";
       }
@@ -50,7 +68,12 @@ class FireBaseApi {
     }
   }
 
-  Future<void> deleteAnimal(String id) async{
+  ///
+  /// [id] id of current animal
+  /// deleteAnimal by id
+  /// return future void
+  ///
+  Future<void> deleteAnimal(String id) async {
     await _fireStore.document("$MAIN_PATH$ANIMAL_PATH/$id").delete();
   }
 }
