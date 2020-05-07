@@ -4,10 +4,10 @@ SUPPORT ALL PLATFORMS: WEB + ANDROID + IOS
 
 exsits 2 features:
 
-## HomePage - BASIC:
+## 1. HomePage - BASIC:
 Load data from firestore and image from storage
 
-## HomePageExt - ADVANCED:
+## 2. HomePageExt - ADVANCED:
 
 1.Load data from firestore and image from storage
 
