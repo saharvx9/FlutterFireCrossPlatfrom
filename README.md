@@ -1,8 +1,8 @@
 # FlutterFireCrossPlatfrom
 
-SUPPORT ALL PLATFORMS: WEB + ANDROID + IOS
+SUPPORT ALL PLATFORMS: WEB + ANDROID + IOS.
 
-exsits 2 features:
+Exsits 2 features:
 
 ## 1. HomePage - BASIC:
 Load data from firestore and image from storage
