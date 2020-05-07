@@ -11,7 +11,7 @@ Load data from firestore and image from storage
 
 1.Load data from firestore and image from storage
 
-2.Add new Animal data + file (support all!!)
+2.Add new Animal data + image file (support all!!)
 
 3.Delete data swipe
 
